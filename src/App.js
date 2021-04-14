@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+import Header from './components/Header';
+import User from './components/User';
+import Container from './components/UI/Container';
 import './App.css';
 
+const Meals = ({ type }) => {
+  if (type === 'vegetables') {
+    return <div className="vegetables">vegetables</div>;
+  }
+
+  if (type === 'fruits') {
+    return <div className="fruits">fruits</div>;
+  }
+
+  return <div>Unknown</div>;
+};
+
 function App() {
+  const randomVal = Math.random();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Container>
+        {randomVal > 0.5 ? (
+          <User name="John" description="sadasd" age={18} />
+        ) : (
+          'Not found'
+        )}
+        <Meals type="fruits" />
+      </Container>
     </div>
   );
 }
