@@ -1,0 +1,16 @@
+@value main-color from '../../../styles/variables.css';
+
+.card {
+  padding: 20px;
+  box-shadow: 1px 1px 10px 1px main-color;
+}
+
+.img {
+  max-width: 100%;
+  width: 100%;
+  display: block;
+}
+
+.rating {
+  margin: 15px 0;
+}

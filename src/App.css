@@ -40,3 +40,8 @@
 .header-logo:hover .header-laptop {
   fill: purple;
 }
+
+.foo {
+  margin: 0 auto;
+  display: block;
+}

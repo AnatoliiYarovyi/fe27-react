@@ -6,7 +6,7 @@ const Header = ({ foo = 'Default', showNav = true }) => {
   return (
     <header className="header">
       <Container>
-        <div className="header__inner'>
+        <div className="header__inner">
           <a href="/" className="header-logo">
             <Logo className="header-logo" laptopClassName="header-laptop" />
           </a>
