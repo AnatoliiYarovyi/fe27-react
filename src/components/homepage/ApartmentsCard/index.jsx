@@ -12,22 +12,25 @@ const Rating = ({ value }) => {
   return <div className={style.rating}>Rating: {stars}</div>;
 };
 
-const ApartmentsCard = ({ title, descr, imgUrl, rating }) => {
+const ApartmentsCard = ({ id, title, descr, imgUrl, rating, onDelete }) => {
   return (
     <div className={style.card}>
       <img className={style.img} src={imgUrl} alt="apartments view" />
       <Rating value={rating} />
       <h2>{title}</h2>
       <p>{descr}</p>
-      <Button>Click me</Button>
+      <Button onClick={() => onDelete(id)}>Delete apartment</Button>
     </div>
   );
 };
 
 ApartmentsCard.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   descr: PropTypes.string,
   imgUrl: PropTypes.string,
+  rating: PropTypes.number,
+  onDelete: PropTypes.func,
 };
 
 export default ApartmentsCard;
