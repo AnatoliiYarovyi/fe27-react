@@ -1,6 +1,6 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import style from './Checkbox.module.css';
-import shortid from 'shortid';
+// import shortid from 'shortid';
 
 const Checkbox = ({ onChange, name, children}) => {
   const id = shortid.generate();
