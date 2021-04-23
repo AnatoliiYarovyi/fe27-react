@@ -61,6 +61,9 @@ class App extends Component {
   render() {
     const currentApartment = this.getCurrentApartments();
 
+
+
+    
     return (
       <div className="App">
         <Header />
