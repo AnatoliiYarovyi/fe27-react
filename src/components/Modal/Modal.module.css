@@ -1,0 +1,38 @@
+.modal {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: #00000060;
+  overflow: auto;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.modal.open {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modalInner {
+  position: relative;
+  background: #fff;
+  padding: 50px;
+  max-width: 450px;
+  width: 100%;
+  margin: auto;
+}
+
+.xButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}

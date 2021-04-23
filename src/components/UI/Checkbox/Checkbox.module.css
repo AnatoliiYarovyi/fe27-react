@@ -1,0 +1,47 @@
+.checkboxWrapper {
+  display: inline-flex;
+  margin: 15px 0;
+}
+
+.checkbox {
+  width: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.checkbox:checked+.label::after {
+  left: 18px;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.label::before {
+  content: '';
+  display: inline-block;
+  margin-right: 8px;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 8px 0px rgba(227, 102, 212, 0.2);
+  background: rgba(227, 102, 212, 0.2);
+}
+
+.label::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: purple;
+  transition: left 0.3s;
+}
