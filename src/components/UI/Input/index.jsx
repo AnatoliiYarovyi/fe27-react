@@ -1,5 +1,5 @@
 import style from './Input.module.css';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const Input = ({
   type = 'text',
