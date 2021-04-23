@@ -64,6 +64,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+
         <Container>
           <SearchBar onSearch={this.searchHandler} />
           <ApartmentsList items={currentApartment} onDelete={this.deleteById} />

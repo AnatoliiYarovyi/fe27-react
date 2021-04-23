@@ -1,4 +1,4 @@
-@value main-color from '../../../styles/variables.css';
+@value main-color from '../../../styles/variables.scss';
 
 .card {
   padding: 20px;

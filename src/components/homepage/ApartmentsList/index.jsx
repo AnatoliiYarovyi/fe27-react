@@ -1,5 +1,5 @@
 import ApartmentsCard from '../ApartmentsCard/';
-import styles from './ApartmentsList.module.css';
+import styles from './ApartmentsList.module.scss';
 import PropTypes from 'prop-types';
 
 const ApartmentsList = ({ items, onDelete }) => {
