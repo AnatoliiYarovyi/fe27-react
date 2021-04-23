@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import style from './Checkbox.module.css';
 import shortid from 'shortid';
 
@@ -14,7 +14,8 @@ const Checkbox = ({ onChange, name, children}) => {
 };
 
 Checkbox.propTypes = {
-  
+  onChange: PropTypes.func,
+  name: PropTypes.string
 };
 
 export default Checkbox;
