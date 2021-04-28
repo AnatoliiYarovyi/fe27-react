@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Container from './components/UI/Container';
 import SearchBar from './components/homepage/SearchBar';
 import ApartmentsList from './components/homepage/ApartmentsList';
+import MouseDecorator from './components/MouseDecorator';
 import apartments from './store/apartments.json';
 import Button from './components/UI/Button';
 import Modal from './components/Modal';
@@ -15,7 +16,7 @@ class App extends Component {
   state = {
     query: '',
     apartments: apartments,
-    open: false
+    open: false,
   };
 
   searchHandler = query => {
@@ -34,23 +35,29 @@ class App extends Component {
     });
   };
 
-  handleSubmitApartmentForm = ({ descr, title, rating, imgUrl, closeOnSubmit }) => {
+  handleSubmitApartmentForm = ({
+    descr,
+    title,
+    rating,
+    imgUrl,
+    closeOnSubmit,
+  }) => {
     const apartment = {
       id: shortid.generate(),
       rating: Number(rating),
       imgUrl,
       title,
       descr,
-    }
+    };
 
-    this.setState((prevState) => ({
-      apartments: [apartment, ...prevState.apartments]
-    }))
+    this.setState(prevState => ({
+      apartments: [apartment, ...prevState.apartments],
+    }));
 
-    if(closeOnSubmit) {
-      this.handleToggleModal(false)
+    if (closeOnSubmit) {
+      this.handleToggleModal(false);
     }
-  }
+  };
 
   getCurrentApartments = () => {
     const { query, apartments } = this.state;
@@ -63,17 +70,19 @@ class App extends Component {
     return apartments;
   };
 
-  handleToggleModal = (isOpen) => {
-    this.setState((prevState) => ({ open: !!isOpen ?? !prevState.open }))
-  }
+  handleToggleModal = isOpen => {
+    this.setState(prevState => ({ open: !!isOpen ?? !prevState.open }));
+  };
 
   render() {
     const currentApartment = this.getCurrentApartments();
-    const { open } = this.state
-    
+    const { open } = this.state;
+
     return (
       <div className="App">
         <Header />
+        {/* {open && <MouseDecorator imgSrc="./mask.svg" />} */}
+        <MouseDecorator imgSrc="./mask.svg" />
         <Container>
           <SearchBar onSearch={this.searchHandler} />
           <Button onClick={this.handleToggleModal}>Add apartment</Button>

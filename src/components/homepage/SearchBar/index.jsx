@@ -15,7 +15,12 @@ const SearchBar = ({ onSearch }) => {
   return (
     <div className={styles.searchBar}>
       <Input className={styles.input} onInput={inputHandler} />
-      <Button className={styles.button} onClick={clickHandler}>
+      <Button
+        className={styles.button}
+        onClick={clickHandler}
+        data-decorate="true"
+        data-icon="./loupe.svg"
+      >
         Search
       </Button>
     </div>

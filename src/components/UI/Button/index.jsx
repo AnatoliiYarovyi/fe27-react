@@ -6,12 +6,13 @@ const Button = ({
   type = 'button',
   disabled,
   onClick,
+  ...restProps
 }) => {
   const classList = [style.button, className].join(' ');
 
-  
   return (
     <button
+      {...restProps}
       className={classList}
       disabled={disabled}
       type={type}
