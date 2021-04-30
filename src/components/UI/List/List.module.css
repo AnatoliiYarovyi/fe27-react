@@ -1,0 +1,24 @@
+.list {
+  display: grid;
+  gap: 20px;
+}
+
+.col1 {
+  grid-template-columns: 1fr;
+}
+
+.col2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.col3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.col4 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.col5 {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

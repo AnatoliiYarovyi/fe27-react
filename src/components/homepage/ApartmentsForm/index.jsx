@@ -10,30 +10,41 @@ class ApartmentsForm extends Component {
     title: '',
     descr: '',
     rating: 0,
-    imgUrl: 'https://res.cloudinary.com/kyoo/image/upload/v1609344653/booking/apartment-10_s17fn0.jpg',
-    closeOnSubmit: false
-  }
+    imgUrl:
+      'https://res.cloudinary.com/kyoo/image/upload/v1609344653/booking/apartment-10_s17fn0.jpg',
+    closeOnSubmit: false,
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     const { onSubmit } = this.props;
 
-    onSubmit && onSubmit({...this.state})
-  }
+    onSubmit && onSubmit({ ...this.state });
+  };
 
-  handleChange = (event) => {
+  handleChange = event => {
     let { value, name, type, checked } = event.target;
 
     this.setState(() => ({
-      [name]: type === 'checkbox' ? checked : value
-    }))
-  }
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
 
   render() {
     return (
       <form className={style.form} onSubmit={this.handleSubmit}>
-        <Input onChange={this.handleChange} className={style.input} name="title" placeHolder="Title" />
-        <Input onChange={this.handleChange} className={style.input} name="descr" placeHolder="Description" />
+        <Input
+          onChange={this.handleChange}
+          className={style.input}
+          name="title"
+          placeHolder="Title"
+        />
+        <Input
+          onChange={this.handleChange}
+          className={style.input}
+          name="descr"
+          placeHolder="Description"
+        />
         <Input
           onChange={this.handleChange}
           className={style.input}
@@ -43,21 +54,23 @@ class ApartmentsForm extends Component {
           min="1"
           max="5"
         />
-        <Checkbox name="closeOnSubmit" onChange={this.handleChange}>close on submit</Checkbox>
+        <Checkbox name="closeOnSubmit" onChange={this.handleChange}>
+          close on submit
+        </Checkbox>
         <Button type="submit">Save</Button>
       </form>
     );
   }
-};
+}
 
 ApartmentsForm.propTypes = {
   initialState: PropTypes.shape({
     title: PropTypes.string,
-    descr:  PropTypes.string,
-    rating:  PropTypes.number,
+    descr: PropTypes.string,
+    rating: PropTypes.number,
     imgUrl: PropTypes.string,
   }),
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
 };
 
 export default ApartmentsForm;

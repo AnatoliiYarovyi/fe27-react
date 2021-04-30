@@ -1,19 +1,22 @@
+import { useRef } from 'react';
 import Button from '../../UI/Button';
 import Input from '../../UI/Input';
 import styles from './SearchBar.module.css';
 import PropTypes from 'prop-types';
 
 const SearchBar = ({ onSearch }) => {
+  const ref = useRef(null);
+  const inputRef = useRef(null);
   const inputHandler = event => {
     onSearch(event.target.value);
   };
 
   const clickHandler = event => {
-    console.log(event);
+    console.log(inputRef.current.value);
   };
 
   return (
-    <div className={styles.searchBar}>
+    <div ref={ref} className={styles.searchBar}>
       <Input className={styles.input} onInput={inputHandler} />
       <Button
         className={styles.button}

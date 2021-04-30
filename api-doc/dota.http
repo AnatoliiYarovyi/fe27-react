@@ -1,0 +1,6 @@
+@base_url=https://api.opendota.com/api
+
+GET {{base_url}}/heroes
+Content-Type: application/json
+
+###
