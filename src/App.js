@@ -1,17 +1,30 @@
 import { Component } from 'react';
-// import Homepage from './pages/Homepage';
-import HeroesPage from './pages/HeroesPage';
+import { Redirect } from 'react-router-dom';
+import Router from './router/Router';
 import Header from './components/Header';
 
 import './App.css';
 
 class App extends Component {
+  state = {
+    isAuth: null,
+  };
+
+  componentDidMount() {
+    Promise.resolve({
+      auth: true,
+      name: 'Alex',
+    }).then(res => this.setState({ isAuth: res.auth }));
+  }
+
   render() {
-    // return <Homepage />;
+    const { isAuth } = this.state;
+
     return (
       <>
         <Header />
-        <HeroesPage />
+        {isAuth !== null && !isAuth && <Redirect to="/unauthorized" />}
+        <Router />
       </>
     );
   }

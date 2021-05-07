@@ -1,28 +1,22 @@
 import Logo from '../Logo';
 import Container from '../UI/Container';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Navigation from './Navigation';
+import styles from './Header.module.css';
 
-const Header = ({ foo = 'Default', showNav = true }) => {
+const Header = ({ showNav = true }) => {
   return (
-    <header className="header">
+    <header className={styles.header}>
       <Container>
-        <div className="header__inner">
-          <a href="/" className="header-logo">
-            <Logo className="header-logo" laptopClassName="header-laptop" />
-          </a>
-          {showNav && (
-            <nav className="nav">
-              <a href="/" className="nav-link">
-                {foo}
-              </a>
-              <a href="/" className="nav-link">
-                Gallery
-              </a>
-              <a href="/" className="nav-link">
-                Contacts
-              </a>
-            </nav>
-          )}
+        <div className={styles.headerInner}>
+          <Link to="/" className={styles.headerLogo}>
+            <Logo
+              className={styles.headerLogo}
+              laptopClassName={styles.headerLaptop}
+            />
+          </Link>
+          {showNav && <Navigation />}
         </div>
       </Container>
     </header>
