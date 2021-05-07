@@ -1,22 +1,22 @@
 import { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
 import HeroesList from '../components/HeroesList';
+import Loader from '../components/Loader';
 import dotaApi from '../api/dota.api';
 
 class Heroes extends Component {
   state = {
     heroes: [],
+    isDataLoaded: false,
   };
 
   async componentDidMount() {
     try {
-      const { match, location, history } = this.props;
       const { data } = await dotaApi.fetchHeroes();
       this.setState(() => ({ heroes: data }));
-      console.log(match);
-      // history.replace('/error');
     } catch (error) {
       console.replace(error);
+    } finally {
+      this.setState(() => ({ isDataLoaded: true }));
     }
   }
 
@@ -30,21 +30,13 @@ class Heroes extends Component {
   };
 
   render() {
-    const { heroes } = this.state;
+    const { heroes, isDataLoaded } = this.state;
 
     return (
-      <>
-        <Switch>
-          <Route
-            path="/heroes/:id"
-            render={({ match }) => {
-              console.log(match);
-              return <h1>Hello</h1>;
-            }}
-          />
-        </Switch>
+      <div style={{ position: 'relative', minHeight: '80vh' }}>
+        <Loader loading={!isDataLoaded} />
         <HeroesList onClick={this.clickHandler} heroes={heroes} />
-      </>
+      </div>
     );
   }
 }

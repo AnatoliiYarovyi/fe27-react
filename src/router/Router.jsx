@@ -1,14 +1,21 @@
-import Homepage from '../pages/Homepage';
-import HeroesPage from '../pages/HeroesPage';
-import ErrorPage from '../pages/ErrorPage';
-import Unauthorized from '../pages/Unauthorized';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import asyncComponent from '../helpers/asyncComponent';
+
+const HeroesPage = asyncComponent({
+  loader: () => import('../pages/HeroesPage'),
+});
+const Homepage = lazy(() => import('../pages/Homepage'));
+const ErrorPage = lazy(() => import('../pages/ErrorPage'));
+const HeroPage = lazy(() => import('../pages/HeroPage'));
+const Unauthorized = lazy(() => import('../pages/Unauthorized'));
 
 export const paths = {
   homepage: '/',
   heroes: '/heroes',
   error: '/error',
   unauthorized: '/unauthorized',
+  hero: id => `/heroes/${id}`,
 };
 
 const routes = [
@@ -20,6 +27,12 @@ const routes = [
   {
     path: paths.heroes,
     component: HeroesPage,
+    exact: true,
+  },
+  {
+    path: paths.hero(':id'),
+    component: HeroPage,
+    exact: true,
   },
   {
     path: paths.error,
@@ -33,17 +46,19 @@ const routes = [
 
 const Router = () => {
   return (
-    <Switch>
-      {routes.map(route => (
-        <Route
-          key={route.path}
-          path={route.path}
-          exact={route.exact}
-          component={route.component}
-        />
-      ))}
-      <Redirect to="/error" />
-    </Switch>
+    <Suspense fallback={'loading'}>
+      <Switch>
+        {routes.map(route => (
+          <Route
+            key={route.path}
+            path={route.path}
+            exact={route.exact}
+            component={route.component}
+          />
+        ))}
+        <Redirect to="/error" />
+      </Switch>
+    </Suspense>
   );
 };
 

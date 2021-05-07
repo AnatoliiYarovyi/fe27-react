@@ -8,9 +8,6 @@ class MouseDecorator extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     const { imgSrc } = nextProps;
 
-    // console.log(nextProps, 'nextProps');
-    // console.log(prevState, 'prevState');
-
     // домешивает imgSrc в state
     if (prevState.imgSrc) {
       return {
@@ -40,7 +37,6 @@ class MouseDecorator extends Component {
       return;
     }
     const imgSrc = target.dataset.icon;
-    console.log(imgSrc);
 
     this.setState({
       x: clientX,
@@ -52,31 +48,6 @@ class MouseDecorator extends Component {
 
   componentDidMount() {
     window.addEventListener('mousemove', this.mouseHandler);
-  }
-
-  /*shouldComponentUpdate(nextProps, nextState) {
-    // console.log(nextProps, '---nextProps');
-    // console.log(nextState, '---nextState');
-
-    const { x } = nextState;
-
-    return x < 150;
-  }*/
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevState.list === this.state.list) {
-      // console.log('y not changed');
-    }
-    // console.log(snapshot, 'snapshot');
-    // console.log(prevProps, 'updated--prevState');
-    // console.log(prevState, 'updated--snapshot');
-  }
-
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    // console.log(prevProps, 'prevProps');
-    // console.log(prevState, 'prevState');
-
-    return 1000;
   }
 
   componentWillUnmount() {
