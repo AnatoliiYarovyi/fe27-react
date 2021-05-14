@@ -35,3 +35,12 @@
 .headerLogo:hover .headerLaptop {
   fill: purple;
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.themeSelector {
+  margin-left: 25px !important;
+}

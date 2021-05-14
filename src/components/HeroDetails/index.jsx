@@ -1,11 +1,15 @@
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { lightThemeAction } from '../../store/actions';
 
-const HeroDetails = ({ name, imgUrl, details }) => {
+const HeroDetails = ({ name, imgUrl, details, theme, changeToLightTheme }) => {
   return (
     <div>
       <img src={imgUrl} alt="" />
+
       <h1>{name}</h1>
-      <p>{details}</p>
+      <p onClick={changeToLightTheme}>{details}</p>
+      <h2>Theme: {theme}</h2>
     </div>
   );
 };
@@ -16,4 +20,12 @@ HeroDetails.propTypes = {
   imgUrl: PropTypes.string,
 };
 
-export default HeroDetails;
+const mapStateToProps = state => ({
+  theme: state.theme,
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeToLightTheme: () => dispatch(lightThemeAction()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeroDetails);

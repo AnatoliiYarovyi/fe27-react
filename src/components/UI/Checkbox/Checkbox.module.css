@@ -10,8 +10,8 @@
   overflow: hidden;
 }
 
-.checkbox:checked+.label::after {
-  left: 18px;
+.checkbox:checked + .label::after {
+  left: 19px;
 }
 
 .label {
@@ -37,7 +37,7 @@
 .label::after {
   content: '';
   position: absolute;
-  top: 2px;
+  top: 1px;
   left: 0;
   height: 20px;
   width: 20px;
