@@ -3,10 +3,10 @@ import { Redirect } from 'react-router-dom';
 import Router from './router/Router';
 import Header from './components/Header';
 import withName from './HOC/withName';
-import MouseCords from './RenderProps/MouseCords';
 import { Provider as ContextProvider } from './Context/context';
 import { Provider as ReduxProvider } from 'react-redux';
-import store from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './store/store';
 
 import './App.css';
 
@@ -24,26 +24,16 @@ class App extends Component {
 
   render() {
     const { isAuth } = this.state;
-    const { name, logger } = this.props;
 
     return (
       <ReduxProvider store={store}>
-        <ContextProvider value={{ theme: 'dark' }}>
-          {/* <button onClick={logger}>Click me</button>
-          {name} */}
-          <Header />
-          {/* <MouseCords>
-            {({ x, y, index }) => (
-              <h1>
-                X axis: {x}, Y axis: {y}
-                <br />
-                Index is {index}
-              </h1>
-            )}
-          </MouseCords> */}
-          {isAuth !== null && !isAuth && <Redirect to="/unauthorized" />}
-          <Router />
-        </ContextProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <ContextProvider value={{ theme: 'dark' }}>
+            <Header />
+            {isAuth !== null && !isAuth && <Redirect to="/unauthorized" />}
+            <Router />
+          </ContextProvider>
+        </PersistGate>
       </ReduxProvider>
     );
   }

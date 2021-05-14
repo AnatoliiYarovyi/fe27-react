@@ -1,0 +1,39 @@
+.wrapper {
+  position: relative;
+  padding: 20px;
+}
+
+.btn {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.heroesAmount {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: calc(100% - 5px);
+  bottom: calc(100% - 5px);
+  font-size: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  color: purple;
+}
+
+.heroesList {
+  position: absolute;
+  z-index: 5;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  max-width: 300px;
+  padding: 15px;
+  color: purple;
+  max-height: 300px;
+  overflow: auto;
+}

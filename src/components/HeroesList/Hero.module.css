@@ -3,6 +3,12 @@
   position: relative;
 }
 
+.title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 .heroImage {
   max-width: 100%;
   width: 100%;
@@ -18,4 +24,30 @@
   height: 100%;
   top: 0;
   left: 0;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 1;
+}
+
+.addButton {
+  position: relative;
+  z-index: 1;
+  margin-left: 15px;
+  background: none;
+  border: 1px solid purple;
+  border-radius: 4px;
+  color: purple;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background: purple;
+  border: 1px solid #fff;
+  color: #fff;
 }

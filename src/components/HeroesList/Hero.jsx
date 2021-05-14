@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { paths } from '../../router/Router';
 import styles from './Hero.module.css';
 
-const Hero = ({ hero, location }) => {
+const Hero = ({ hero, location, onAddFavoriteBtnClick }) => {
   const {
     id,
     name,
@@ -21,7 +21,12 @@ const Hero = ({ hero, location }) => {
     <div className={styles.hero}>
       <img className={styles.heroImage} src={imgUrl} alt="heroes avatar" />
       <div className={styles.text}>
-        <h2>{title}</h2>
+        <div className={styles.heading}>
+          <h2 className={styles.title}>{title}</h2>{' '}
+          <button onClick={onAddFavoriteBtnClick} className={styles.addButton}>
+            ❤
+          </button>
+        </div>
         <p>Main attribute: {mainAttribute}</p>
         <p>Roles: {rolesList}</p>
       </div>

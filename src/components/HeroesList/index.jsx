@@ -1,8 +1,11 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Hero from './Hero';
 import List from '../UI/List';
 import Container from '../UI/Container';
+// import { addFavoriteHero } from '../../store/actions';
+import { addFavoriteHero } from '../../store/toolkitActions';
 
 class HeroesList extends Component {
   state = {
@@ -14,7 +17,7 @@ class HeroesList extends Component {
   };
 
   render() {
-    const { heroes } = this.props;
+    const { heroes, addFavoriteHero } = this.props;
     const { role } = this.state;
     const uniqueRoles = [...new Set(heroes.flatMap(hero => hero.roles))];
     const currentHeroes = role
@@ -37,7 +40,13 @@ class HeroesList extends Component {
         </div>
         <List col={5}>
           {currentHeroes.map(hero => (
-            <Hero hero={hero} key={hero.id} />
+            <Hero
+              hero={hero}
+              onAddFavoriteBtnClick={() => {
+                addFavoriteHero(hero);
+              }}
+              key={hero.id}
+            />
           ))}
         </List>
       </Container>
@@ -59,4 +68,8 @@ HeroesList.propTypes = {
   ).isRequired,
 };
 
-export default HeroesList;
+const mapDispatchToProps = dispatch => ({
+  addFavoriteHero: hero => dispatch(addFavoriteHero(hero)),
+});
+
+export default connect(null, mapDispatchToProps)(HeroesList);

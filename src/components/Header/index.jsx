@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import CheckBox from '../UI/Checkbox';
-import { toggleTheme } from '../../store/actions';
+import FavoriteHeroesList from './FavoriteHeros';
+import { toggleTheme } from '../../store/toolkitActions';
 import styles from './Header.module.css';
 
-const Header = ({ showNav = true, theme, changeTheme }) => {
+const Header = ({ showNav = true, theme, changeTheme, favoriteHeroes }) => {
   const isDarkTheme = theme === 'dark';
 
   return (
@@ -31,6 +32,7 @@ const Header = ({ showNav = true, theme, changeTheme }) => {
             </CheckBox>
           </div>
           {showNav && <Navigation />}
+          <FavoriteHeroesList heroesList={favoriteHeroes} />
         </div>
       </Container>
     </header>
@@ -44,6 +46,7 @@ Header.propTypes = {
 const mapStateToProps = state => {
   return {
     theme: state.theme,
+    favoriteHeroes: state.favoriteHeroes,
   };
 };
 
