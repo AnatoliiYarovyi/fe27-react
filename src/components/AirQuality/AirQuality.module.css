@@ -1,0 +1,36 @@
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.airQualityCard {
+  background: purple;
+  border-radius: 4px;
+  padding: 30px;
+  color: #fff;
+}
+
+.airQualityDescription {
+  border-bottom: 1px solid #fff;
+}
+
+.measurementsList {
+  padding-left: 0;
+}
+
+.measurementsValues {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.measurementTitle {
+  border-bottom: 1px solid #fff;
+  margin: 10px 0;
+}

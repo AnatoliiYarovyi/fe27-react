@@ -8,14 +8,16 @@ const HeroesPage = asyncComponent({
 const Homepage = lazy(() => import('../pages/Homepage'));
 const ErrorPage = lazy(() => import('../pages/ErrorPage'));
 const HeroPage = lazy(() => import('../pages/HeroPage'));
+const AirQualityPage = lazy(() => import('../pages/AirQualityPage'));
 const Unauthorized = lazy(() => import('../pages/Unauthorized'));
 
 export const paths = {
   homepage: '/',
   heroes: '/heroes',
   error: '/error',
-  unauthorized: '/unauthorized',
+  airQuality: '/air-quality',
   hero: id => `/heroes/${id}`,
+  unauthorized: '/unauthorized',
 };
 
 const routes = [
@@ -32,6 +34,11 @@ const routes = [
   {
     path: paths.hero(':id'),
     component: HeroPage,
+    exact: true,
+  },
+  {
+    path: paths.airQuality,
+    component: AirQualityPage,
     exact: true,
   },
   {

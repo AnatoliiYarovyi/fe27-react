@@ -17,6 +17,7 @@ import storage from 'redux-persist/lib/storage';
 import favoriteHeroesReducer from './slices/favoriteHeroes';
 import heroesReducer from './slices/heroes';
 import themeReducer from './slices/theme';
+import airQualityReducer from './slices/airQuality';
 
 const loggerMiddleware = store => next => action => {
   console.log(`Action type: ${action.type}; payload: ${action.payload}`);
@@ -33,17 +34,18 @@ const middleware = [
 ];
 
 const persistConfig = {
-  key: 'root',
+  key: 'favoriteHeroes',
   storage,
 };
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
   favoriteHeroes: favoriteHeroesReducer,
   heroes: heroesReducer,
   theme: themeReducer,
+  airQuality: airQualityReducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
