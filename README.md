@@ -1,6 +1,7 @@
-# React toolkit
+# Redux thunk
 
 - Ответы на вопросы
 - Кахут
-- Пример добавление в избранные
-- Тот же пример с редакс девтулз
+- Middleware redux
+- Thunk
+- Create Async thunk

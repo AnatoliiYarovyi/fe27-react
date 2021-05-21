@@ -29,36 +29,5 @@ const reducer = createReducer(
     },
   },
 );
-// const reducer = (state = { ...initialState }, action) => {
-//   switch (action.type) {
-//     case toggleTheme.type:
-//       return {
-//         ...state,
-//         theme: state.theme === 'dark' ? 'light' : 'dark',
-//         bob: 'bob',
-//       };
-
-//     case lightThemeAction.type:
-//       return {
-//         ...state,
-//         theme: 'light',
-//       };
-
-//     case addFavoriteHero.type:
-//       const heroId = action.payload.id;
-
-//       if (state.favoriteHeroes.find(hero => hero.id === heroId)) {
-//         return state;
-//       }
-
-//       return {
-//         ...state,
-//         favoriteHeroes: [action.payload, ...state.favoriteHeroes],
-//       };
-
-//     default:
-//       return state;
-//   }
-// };
 
 export default reducer;

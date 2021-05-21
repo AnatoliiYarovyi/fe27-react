@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import Hero from './Hero';
 import List from '../UI/List';
 import Container from '../UI/Container';
-// import { addFavoriteHero } from '../../store/actions';
-import { addFavoriteHero } from '../../store/toolkitActions';
+import { addFavoriteHero } from '../../store/slices/favoriteHeroes';
 
 class HeroesList extends Component {
   state = {
@@ -42,7 +41,7 @@ class HeroesList extends Component {
           {currentHeroes.map(hero => (
             <Hero
               hero={hero}
-              onAddFavoriteBtnClick={() => {
+              onAddFavorite={() => {
                 addFavoriteHero(hero);
               }}
               key={hero.id}

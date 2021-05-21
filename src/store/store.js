@@ -1,4 +1,3 @@
-import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import {
   persistStore,
   persistReducer,
@@ -9,9 +8,20 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import {
+  configureStore,
+  getDefaultMiddleware,
+  combineReducers,
+} from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import reducer from './reducer';
+import favoriteHeroesReducer from './slices/favoriteHeroes';
+import heroesReducer from './slices/heroes';
+import themeReducer from './slices/theme';
+
+const loggerMiddleware = store => next => action => {
+  console.log(`Action type: ${action.type}; payload: ${action.payload}`);
+  next(action);
+};
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -19,6 +29,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  loggerMiddleware,
 ];
 
 const persistConfig = {
@@ -26,16 +37,13 @@ const persistConfig = {
   storage,
 };
 
-// const rootReducer = combineReducers({
-//   reducer,
-// });
+const reducer = combineReducers({
+  favoriteHeroes: favoriteHeroesReducer,
+  heroes: heroesReducer,
+  theme: themeReducer,
+});
 
 const persistedReducer = persistReducer(persistConfig, reducer);
-
-// const store = createStore(
-//   persistedReducer,
-//   composeEnhancers(applyMiddleware()),
-// );
 
 const store = configureStore({
   reducer: persistedReducer,
@@ -43,13 +51,5 @@ const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 export const persistor = persistStore(store);
-
-// способ добавления в локасторадж элементов
-store.subscribe(() => {
-  localStorage.setItem(
-    'testStore',
-    JSON.stringify(store.getState().favoriteHeroes),
-  );
-});
 
 export default store;

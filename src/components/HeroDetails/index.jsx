@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { lightThemeAction } from '../../store/actions';
+import { enableLightTheme } from '../../store/slices/theme';
 
 const HeroDetails = ({ name, imgUrl, details, theme, changeToLightTheme }) => {
   return (
     <div>
       <img src={imgUrl} alt="" />
-
       <h1>{name}</h1>
       <p onClick={changeToLightTheme}>{details}</p>
       <h2>Theme: {theme}</h2>
@@ -21,11 +20,11 @@ HeroDetails.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  theme: state.theme,
+  theme: state.theme.theme,
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeToLightTheme: () => dispatch(lightThemeAction()),
+  changeToLightTheme: () => dispatch(enableLightTheme()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeroDetails);

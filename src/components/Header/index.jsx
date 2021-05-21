@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Navigation from './Navigation';
 import CheckBox from '../UI/Checkbox';
 import FavoriteHeroesList from './FavoriteHeros';
-import { toggleTheme } from '../../store/toolkitActions';
+import { toggleTheme } from '../../store/slices/theme';
 import styles from './Header.module.css';
 
 const Header = ({ showNav = true, theme, changeTheme, favoriteHeroes }) => {
@@ -45,8 +45,8 @@ Header.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    theme: state.theme,
-    favoriteHeroes: state.favoriteHeroes,
+    theme: state.theme.theme,
+    favoriteHeroes: state.favoriteHeroes.items,
   };
 };
 

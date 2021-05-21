@@ -3,7 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { paths } from '../../router/Router';
 import styles from './Hero.module.css';
 
-const Hero = ({ hero, location, onAddFavoriteBtnClick }) => {
+const Hero = ({ hero, location, onAddFavorite }) => {
   const {
     id,
     name,
@@ -23,7 +23,7 @@ const Hero = ({ hero, location, onAddFavoriteBtnClick }) => {
       <div className={styles.text}>
         <div className={styles.heading}>
           <h2 className={styles.title}>{title}</h2>{' '}
-          <button onClick={onAddFavoriteBtnClick} className={styles.addButton}>
+          <button onClick={onAddFavorite} className={styles.addButton}>
             ❤
           </button>
         </div>
