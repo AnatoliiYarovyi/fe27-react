@@ -7,3 +7,6 @@ export const selectByCountry = state => countryName => {
     item.country.includes(countryName),
   );
 };
+
+// i18n - ir_EN
+// l10n - en / ru / ua

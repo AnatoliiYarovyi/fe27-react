@@ -8,6 +8,8 @@ import Modal from '../components/Modal';
 import ApartmentsForm from '../components/homepage/ApartmentsForm';
 import apartments from '../store/apartments.json';
 
+import { withTranslation } from 'react-i18next';
+
 class Homepage extends Component {
   state = {
     query: '',
@@ -73,12 +75,15 @@ class Homepage extends Component {
   render() {
     const currentApartment = this.getCurrentApartments();
     const { open } = this.state;
+    const { t } = this.props;
 
     return (
       <div className="App">
         <Container>
           <SearchBar onSearch={this.searchHandler} />
-          <Button onClick={this.handleToggleModal}>Add apartment</Button>
+          <Button onClick={this.handleToggleModal}>
+            {t('Apartments title')}
+          </Button>
           <ApartmentsList items={currentApartment} onDelete={this.deleteById} />
         </Container>
         <Modal open={open} onClose={this.handleToggleModal}>
@@ -89,4 +94,4 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+export default withTranslation()(Homepage);

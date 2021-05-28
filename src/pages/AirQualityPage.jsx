@@ -44,3 +44,12 @@ const MDTP = dispatch => ({
 });
 
 export default connect(MSTP, MDTP)(AirQualityPage);
+
+// const foo = 10;
+// const React = (function (parameter1, parameter2) {
+//   const foo = 5;
+// })(1, 2);
+
+// {
+//   const foo = 15;
+// }

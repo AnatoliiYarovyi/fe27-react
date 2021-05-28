@@ -1,4 +1,4 @@
-@base_url=https://api.opendota.com/api
+@base_url=https://api.opendota.com/api?lang=
 
 GET {{base_url}}/heroes
 Content-Type: application/json
