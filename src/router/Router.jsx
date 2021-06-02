@@ -9,6 +9,8 @@ const Homepage = lazy(() => import('../pages/Homepage'));
 const ErrorPage = lazy(() => import('../pages/ErrorPage'));
 const HeroPage = lazy(() => import('../pages/HeroPage'));
 const AirQualityPage = lazy(() => import('../pages/AirQualityPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
 const Unauthorized = lazy(() => import('../pages/Unauthorized'));
 
 export const paths = {
@@ -18,6 +20,8 @@ export const paths = {
   airQuality: '/air-quality',
   hero: id => `/heroes/${id}`,
   unauthorized: '/unauthorized',
+  login: '/login',
+  registration: '/registration',
 };
 
 const routes = [
@@ -48,6 +52,14 @@ const routes = [
   {
     path: paths.unauthorized,
     component: Unauthorized,
+  },
+  {
+    path: paths.login,
+    component: LoginPage,
+  },
+  {
+    path: paths.registration,
+    component: RegistrationPage,
   },
 ];
 

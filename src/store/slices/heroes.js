@@ -25,7 +25,7 @@ const fetchFailure = error => ({
 
 const initialState = {
   heroes: [],
-  error: '',
+  error: null,
   loading: false,
 };
 

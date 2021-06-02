@@ -2,7 +2,7 @@ import ApartmentsCard from '../ApartmentsCard/';
 import styles from './ApartmentsList.module.scss';
 import PropTypes from 'prop-types';
 
-const ApartmentsList = ({ items, onDelete }) => {
+const ApartmentsList = ({ items, onBookApartment }) => {
   return (
     <div className={styles.list}>
       {items.map(({ id, title, descr, imgUrl, rating }) => (
@@ -13,7 +13,7 @@ const ApartmentsList = ({ items, onDelete }) => {
           title={title}
           descr={descr}
           imgUrl={imgUrl}
-          onDelete={onDelete}
+          onBookApartment={onBookApartment}
         />
       ))}
     </div>
@@ -22,7 +22,7 @@ const ApartmentsList = ({ items, onDelete }) => {
 
 ApartmentsList.propTypes = {
   items: PropTypes.array.isRequired,
-  onDelete: PropTypes.func,
+  onBookApartment: PropTypes.func,
 };
 
 export default ApartmentsList;

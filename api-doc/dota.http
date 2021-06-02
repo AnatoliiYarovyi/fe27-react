@@ -1,6 +1,26 @@
 @base_url=https://api.opendota.com/api
+@APARTMENTS_URL=https://apt-booking-api.herokuapp.com
 
 GET {{base_url}}/heroes
 Content-Type: application/json
 
-###
+### Register
+
+POST {{APARTMENTS_URL}}/users/register
+Content-Type: application/json
+
+{
+  "name": "ALex",
+  "email": "test@text.com",
+  "password": "qwerty1"
+}
+
+### Login
+
+POST {{APARTMENTS_URL}}/users/login
+Content-Type: application/json
+
+{
+  "email": "test@text.com",
+  "password": "qwerty1"
+}
