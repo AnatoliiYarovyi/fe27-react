@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './Login.module.css';
 import LoginForm from './LoginForm';
 import apartmentsApi from '../../api/apartments.api';
+import AuthSection from '../auth/AuthSection';
+import AuthCard from '../auth/AuthCard';
 
 const Login = props => {
   const handleSubmit = async data => {
@@ -13,10 +15,11 @@ const Login = props => {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.overlay}></div>
-      <LoginForm onSubmit={handleSubmit} className={styles.form} />
-    </div>
+    <AuthSection>
+      <AuthCard className={styles.form}>
+        <LoginForm onSubmit={handleSubmit} />
+      </AuthCard>
+    </AuthSection>
   );
 };
 

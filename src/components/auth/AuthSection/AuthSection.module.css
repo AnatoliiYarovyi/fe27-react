@@ -1,0 +1,8 @@
+.authSection {
+  display: flex;
+  background: url('./images/apartments.jpg') center;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding-top: 50px;
+}

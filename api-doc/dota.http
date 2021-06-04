@@ -24,3 +24,14 @@ Content-Type: application/json
   "email": "test@text.com",
   "password": "qwerty1"
 }
+
+### Register
+
+POST {{APARTMENTS_URL}}/users/register
+Content-Type: application/json
+
+{
+  "name": "Alex",
+  "email": "reasttest@text.com",
+  "password": "qwerty1"
+}

@@ -1,11 +1,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  width: 100%;
-  background: #fff;
-  border-radius: 4px;
-  padding: 25px;
 }
 
 .input {
@@ -26,7 +21,7 @@
   width: 20px;
   height: 20px;
   position: absolute;
-  right: 0;
+  right: 5px;
   top: 8px;
   padding: 0 !important;
   display: flex;

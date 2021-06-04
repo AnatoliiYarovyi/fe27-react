@@ -25,7 +25,11 @@ const LoginForm = ({ onSubmit, className }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={cx(styles.form, className)}>
+    <form
+      onSubmit={handleSubmit}
+      className={cx(styles.form, className)}
+      autoComplete="false"
+    >
       <h2 className={styles.title}>Login</h2>
       <Input
         className={styles.input}

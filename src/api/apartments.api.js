@@ -11,7 +11,7 @@ const apartmentsApi = {
     return axios.post(`${APARTMENTS_URL}/users/login`, payload);
   },
 
-  registration(payload) {
+  register(payload) {
     return axios.post(`${APARTMENTS_URL}/users/register`, payload);
   },
 };

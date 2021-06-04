@@ -18,6 +18,7 @@ import favoriteHeroesReducer from './slices/favoriteHeroes';
 import heroesReducer from './slices/heroes';
 import themeReducer from './slices/theme';
 import airQualityReducer from './slices/airQuality';
+import usersReducer from './users/users.slice';
 
 const loggerMiddleware = store => next => action => {
   console.log(`Action type: ${action.type}; payload: ${action.payload}`);
@@ -34,7 +35,7 @@ const middleware = [
 ];
 
 const persistConfig = {
-  key: 'favoriteHeroes',
+  key: 'users',
   storage,
 };
 
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   heroes: heroesReducer,
   theme: themeReducer,
   airQuality: airQualityReducer,
+  users: usersReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
