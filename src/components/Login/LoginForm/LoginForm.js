@@ -7,6 +7,8 @@ import cx from 'classnames';
 
 const LoginForm = ({ onSubmit, onChange, className, formData }) => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const switchPasswordVisibility = () => {
     setPasswordVisibility(!passwordVisibility);
   };
