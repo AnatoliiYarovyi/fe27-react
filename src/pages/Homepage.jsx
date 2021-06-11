@@ -3,6 +3,7 @@ import Container from '../components/UI/Container';
 import SearchBar from '../components/homepage/SearchBar';
 import ApartmentsList from '../components/homepage/ApartmentsList';
 import apartmentsApi from '../api/apartments.api';
+import withAuth from '../HOC/withAuth';
 
 const Homepage = () => {
   const [apartments, setApartments] = useState([]);
@@ -52,4 +53,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default withAuth(Homepage);

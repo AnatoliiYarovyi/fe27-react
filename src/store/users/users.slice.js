@@ -7,11 +7,18 @@ const usersSlice = createSlice({
   initialState,
   reducers: {
     register(state, action) {
-      return { ...action.payload };
+      const { name, email, token } = action.payload;
+      return { name, email, token };
     },
-    login(state, action) {},
+    login(state, action) {
+      const { name, email, token } = action.payload;
+      return { name, email, token };
+    },
+    logout(state) {
+      state.token = '';
+    },
   },
 });
 
-export const { register, login } = usersSlice.actions;
+export const { register, login, logout } = usersSlice.actions;
 export default usersSlice.reducer;

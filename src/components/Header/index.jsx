@@ -7,6 +7,8 @@ import Navigation from './Navigation';
 import CheckBox from '../UI/Checkbox';
 import FavoriteHeroesList from './FavoriteHeros';
 import { toggleTheme } from '../../store/slices/theme';
+import LogoutButton from './LogoutButton';
+import Auth from './Auth';
 import styles from './Header.module.css';
 
 const Header = ({ showNav = true, theme, changeTheme, favoriteHeroes }) => {
@@ -31,8 +33,10 @@ const Header = ({ showNav = true, theme, changeTheme, favoriteHeroes }) => {
               Theme: {theme}
             </CheckBox>
           </div>
-          {showNav && <Navigation />}
+          {showNav && <Navigation className={styles.headerNav} />}
           <FavoriteHeroesList heroesList={favoriteHeroes} />
+          <Auth />
+          <LogoutButton />
         </div>
       </Container>
     </header>

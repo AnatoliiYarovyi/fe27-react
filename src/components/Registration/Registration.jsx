@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AuthSection from '../auth/AuthSection';
 import AuthCard from '../auth/AuthCard';
@@ -7,6 +6,8 @@ import styles from './Registration.module.css';
 import apartmentApi from '../../api/apartments.api';
 import { register } from '../../store/users/users.slice';
 import { isAuth } from '../../store/users/users.selectors';
+import { useFormData } from '../../hooks/useFormData';
+import { useWindowResize } from '../../hooks/useWindowResize';
 
 const initialState = {
   name: '',
@@ -17,7 +18,13 @@ const initialState = {
 export const Registration = props => {
   const isUserLoggedIn = useSelector(isAuth);
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({ ...initialState });
+  const { formData, handleChange, setFormData } = useFormData({
+    ...initialState,
+  });
+
+  const handleResize = event => console.log(event);
+  useWindowResize(handleResize);
+
   const handleSubmit = async () => {
     try {
       const {
@@ -30,13 +37,6 @@ export const Registration = props => {
     } catch (error) {
       console.warn(error);
     }
-  };
-
-  const handleChange = ({ value, name }) => {
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
   };
 
   return (

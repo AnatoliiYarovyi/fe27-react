@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { paths } from '../../router/Router';
 import styles from './Header.module.css';
+import cx from 'classnames';
 
 const navList = [
   {
@@ -37,9 +38,9 @@ const NavLinkItem = ({ to, children, state }) => {
   );
 };
 
-const Navigation = () => {
+const Navigation = ({ className }) => {
   return (
-    <nav className={styles.nav}>
+    <nav className={cx(styles.nav, className)}>
       {navList.map(navItem => (
         <NavLinkItem key={navItem.to} state={navItem.state} to={navItem.to}>
           {navItem.text}

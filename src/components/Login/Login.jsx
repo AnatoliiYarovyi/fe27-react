@@ -1,14 +1,35 @@
-import React from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './Login.module.css';
 import LoginForm from './LoginForm';
 import apartmentsApi from '../../api/apartments.api';
 import AuthSection from '../auth/AuthSection';
 import AuthCard from '../auth/AuthCard';
+import { login } from '../../store/users/users.slice';
+import { useFormData } from '../../hooks/useFormData';
 
-const Login = props => {
-  const handleSubmit = async data => {
+const initialState = {
+  email: '',
+  password: '',
+};
+
+const Login = () => {
+  const dispatch = useDispatch();
+  const { formData, handleChange } = useFormData({
+    ...initialState,
+  });
+
+  const handleSubmit = async () => {
     try {
-      await apartmentsApi.login(data);
+      const { data } = await apartmentsApi.login(formData);
+      const { user, token } = data;
+
+      dispatch(
+        login({
+          token,
+          email: user.email,
+          name: user.name,
+        }),
+      );
     } catch (error) {
       console.error(error);
     }
@@ -17,7 +38,11 @@ const Login = props => {
   return (
     <AuthSection>
       <AuthCard className={styles.form}>
-        <LoginForm onSubmit={handleSubmit} />
+        <LoginForm
+          formData={formData}
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+        />
       </AuthCard>
     </AuthSection>
   );

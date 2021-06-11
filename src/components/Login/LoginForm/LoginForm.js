@@ -5,23 +5,20 @@ import Button from '../../UI/Button';
 import styles from './LoginForm.module.css';
 import cx from 'classnames';
 
-const LoginForm = ({ onSubmit, className }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm = ({ onSubmit, onChange, className, formData }) => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const switchPasswordVisibility = () => {
     setPasswordVisibility(!passwordVisibility);
   };
 
+  const handleChange = event => {
+    const { name, value } = event.target;
+    onChange({ name, value });
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
-
-    const data = {
-      email,
-      password,
-    };
-
-    onSubmit?.(data);
+    onSubmit?.();
   };
 
   return (
@@ -36,7 +33,8 @@ const LoginForm = ({ onSubmit, className }) => {
         name="email"
         type="email"
         placeHolder="Email"
-        onChange={event => setEmail(event.target.value)}
+        value={formData.email}
+        onChange={handleChange}
       />
       <div className={styles.passWrapper}>
         <Input
@@ -44,7 +42,8 @@ const LoginForm = ({ onSubmit, className }) => {
           name="password"
           type={passwordVisibility ? 'text' : 'password'}
           placeHolder="Password"
-          onChange={event => setPassword(event.target.value)}
+          value={formData.password}
+          onChange={handleChange}
         />
 
         <Button
