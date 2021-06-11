@@ -15,16 +15,11 @@ const FavoriteHeroes = ({ heroesList = [] }) => {
       {showHeroes && (
         <div className={styles.heroesList}>
           {heroesList.map(hero => {
-            const heroName = hero.name
-              .toLowerCase()
-              .replace('npc_dota_hero_', '');
-            const imgUrl = `http://cdn.dota2.com/apps/dota2/images/heroes/${heroName}_full.png`;
-
             return (
               <FavoriteHeroesCard
-                key={hero.id}
-                title={hero.localized_name}
-                imgUrl={imgUrl}
+                key={hero.apartment.id}
+                title={hero.apartment.title}
+                imgUrl={hero.apartment.imgUrl}
               />
             );
           })}

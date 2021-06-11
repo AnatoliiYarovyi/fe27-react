@@ -1,42 +1,40 @@
 import { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import Router from './router/Router';
 import Header from './components/Header';
-import withName from './HOC/withName';
-import { Provider as ContextProvider } from './Context/context';
-import { Provider as ReduxProvider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import store, { persistor } from './store/store';
-
+import apartmentsApi from './api/apartments.api';
+import { setBookedApartments } from './store/apartments/apartments.slice';
+import { connect } from 'react-redux';
 import './App.css';
 
 class App extends Component {
-  state = {
-    isAuth: null,
-  };
+  async componentDidMount() {
+    const { token, setBookedApartments } = this.props;
 
-  componentDidMount() {
-    Promise.resolve({
-      auth: true,
-      name: 'Alex',
-    }).then(res => this.setState({ isAuth: res.auth }));
+    try {
+      const { data } = await apartmentsApi.fetchBookedApartments(token);
+      setBookedApartments(data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   render() {
-    const { isAuth } = this.state;
-
     return (
-      <ReduxProvider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <ContextProvider value={{ theme: 'dark' }}>
-            <Header />
-            {isAuth !== null && !isAuth && <Redirect to="/unauthorized" />}
-            <Router />
-          </ContextProvider>
-        </PersistGate>
-      </ReduxProvider>
+      <>
+        <Header />
+        <Router />
+      </>
     );
   }
 }
 
-export default withName('King Kong')(App);
+const mapSateToProps = state => ({
+  token: state.users.token,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setBookedApartments: bookedApartments =>
+    dispatch(setBookedApartments(bookedApartments)),
+});
+
+export default connect(mapSateToProps, mapDispatchToProps)(App);

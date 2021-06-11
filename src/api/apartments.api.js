@@ -14,6 +14,18 @@ const apartmentsApi = {
   register(payload) {
     return axios.post(`${APARTMENTS_URL}/users/register`, payload);
   },
+
+  fetchBookedApartments(token) {
+    return axios.get(`${APARTMENTS_URL}/orders`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
+
+  toggleApartmentsBooking(payload, token) {
+    return axios.post(`${APARTMENTS_URL}/orders`, payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  },
 };
 
 export default apartmentsApi;

@@ -25,15 +25,14 @@ export const Registration = props => {
   const handleResize = event => console.log(event);
   useWindowResize(handleResize);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async data => {
     try {
       const {
         data: { user, token },
-      } = await apartmentApi.register(formData);
+      } = await apartmentApi.register(data);
 
       const payload = { name: user.name, email: user.email, token };
       dispatch(register(payload));
-      setFormData({ ...initialState });
     } catch (error) {
       console.warn(error);
     }

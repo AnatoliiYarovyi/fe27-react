@@ -19,6 +19,7 @@ import heroesReducer from './slices/heroes';
 import themeReducer from './slices/theme';
 import airQualityReducer from './slices/airQuality';
 import usersReducer from './users/users.slice';
+import apartmentReducer from './apartments/apartments.slice';
 
 const loggerMiddleware = store => next => action => {
   console.log(`Action type: ${action.type}; payload: ${action.payload}`);
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
   theme: themeReducer,
   airQuality: airQualityReducer,
   users: usersReducer,
+  apartments: apartmentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

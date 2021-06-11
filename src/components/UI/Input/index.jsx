@@ -1,29 +1,44 @@
-import style from './Input.module.css';
+import { forwardRef } from 'react';
+import styles from './Input.module.css';
 import PropTypes from 'prop-types';
 
-const Input = ({
-  type = 'text',
-  value,
-  className,
-  placeHolder,
-  name,
-  onChange,
-  ...restProps
-}) => {
-  const classList = [style.input, className].join(' ');
+const Input = forwardRef(
+  (
+    {
+      type = 'text',
+      value,
+      className,
+      placeHolder,
+      name,
+      onChange,
+      error,
+      ...restProps
+    },
+    ref,
+  ) => {
+    const classList = [styles.label, className].join(' ');
 
-  return (
-    <input
-      {...restProps}
-      type={type}
-      value={value}
-      name={name}
-      className={classList}
-      placeholder={placeHolder}
-      onChange={onChange}
-    />
-  );
-};
+    return (
+      <label className={classList}>
+        <input
+          ref={ref}
+          {...restProps}
+          type={type}
+          value={value}
+          name={name}
+          className={styles.input}
+          placeholder={placeHolder}
+          onChange={onChange}
+        />
+        {error && (
+          <span className={styles.error} title={error}>
+            {error}
+          </span>
+        )}
+      </label>
+    );
+  },
+);
 
 Input.propTypes = {
   type: PropTypes.string,

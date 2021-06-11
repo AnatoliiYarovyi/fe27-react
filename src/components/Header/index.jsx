@@ -50,7 +50,7 @@ Header.propTypes = {
 const mapStateToProps = state => {
   return {
     theme: state.theme.theme,
-    favoriteHeroes: state.favoriteHeroes.items,
+    favoriteHeroes: state.apartments.bookedApartments,
   };
 };
 

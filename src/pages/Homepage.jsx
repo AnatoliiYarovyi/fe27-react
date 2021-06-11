@@ -1,13 +1,17 @@
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Container from '../components/UI/Container';
 import SearchBar from '../components/homepage/SearchBar';
 import ApartmentsList from '../components/homepage/ApartmentsList';
 import apartmentsApi from '../api/apartments.api';
 import withAuth from '../HOC/withAuth';
+import { toggleBookingApartments } from '../store/apartments/apartments.slice';
 
 const Homepage = () => {
   const [apartments, setApartments] = useState([]);
   const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
+  const token = useSelector(state => state.users.token);
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -36,7 +40,18 @@ const Homepage = () => {
     return apartments;
   };
 
-  const handleBooking = () => {};
+  const handleBooking = async id => {
+    try {
+      const body = {
+        apartmentId: id,
+        date: new Date(),
+      };
+      const { data } = await apartmentsApi.toggleApartmentsBooking(body, token);
+      dispatch(toggleBookingApartments(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const currentApartment = getCurrentApartments();
 

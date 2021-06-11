@@ -1,43 +1,55 @@
 import Input from '../../UI/Input';
 import Button from '../../UI/Button';
 import styles from './RegistrationForm.module.css';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-export const RegistrationForm = ({ onSubmit, formData, onChange }) => {
-  const handleSubmit = event => {
-    event.preventDefault();
-    onSubmit(formData);
-  };
+const schema = yup.object().shape({
+  name: yup.string().min(2).max(12),
+  email: yup.string().email().required(),
+  password: yup
+    .string()
+    .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)
+    .required(),
+});
 
-  const handleChange = event => {
-    const { value, name } = event.target;
-    onChange({ value, name });
+export const RegistrationForm = ({ onSubmit }) => {
+  const { register, handleSubmit, formState, reset } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(schema),
+  });
+
+  const { errors } = formState;
+  const submitForm = async data => {
+    await onSubmit(data);
+    reset();
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit(submitForm)}>
       <h2>Register now</h2>
       <Input
         className={styles.input}
-        name="name"
         placeHolder="Name"
-        onChange={handleChange}
-        value={formData.name}
+        {...register('name')}
+        error={errors.name?.message}
       />
+
       <Input
         className={styles.input}
-        name="email"
         type="email"
         placeHolder="Email"
-        onChange={handleChange}
-        value={formData.email}
+        {...register('email')}
+        error={errors.email?.message}
       />
+
       <Input
         className={styles.input}
-        name="password"
+        {...register('password')}
         type="password"
         placeHolder="Password"
-        onChange={handleChange}
-        value={formData.password}
+        error={errors.password?.message}
       />
       <Button type="submit">Register</Button>
     </form>
